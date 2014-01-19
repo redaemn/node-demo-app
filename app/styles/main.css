@@ -77,3 +77,6 @@ body {
     border-bottom: 0;
   }
 }
+
+/* Angular UI Bootstrap fix */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

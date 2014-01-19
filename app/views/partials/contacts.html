@@ -21,8 +21,13 @@
       </tr>
     </tbody>
   </table>
-</div>
 
-<div class="footer">
-  <p>♥ from the Yeoman team</p>
+  <div class="well">
+    <div>
+      <pagination total-items="totalContacts" page="page" items-per-page="count"></pagination>
+    </div>
+    <div>
+      <label>Items per page:</label> <select ng-model="count" ng-options="c for c in counts"></select>
+    </div>
+  </div>
 </div>
