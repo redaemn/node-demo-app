@@ -3,8 +3,8 @@
 angular.module('nodeDemoAppApp')
   .directive('columnOrdering', function () {
     
-    var DESC = "desc",
-      ASC = "asc";
+    var DESC = -1,
+      ASC = 1;
 
     return {
       template: '<span ng-click="triggerOrdering()">' +
@@ -15,11 +15,11 @@ angular.module('nodeDemoAppApp')
       transclude: true,
       restrict: 'A',
       scope: {
-        fieldName: "@",
-        field: "=",
-        direction: "="
+        fieldName: '@',
+        field: '=',
+        direction: '='
       },
-      link: function postLink($scope, $element, $attrs) {
+      link: function postLink($scope, $element) {
         $element.css('cursor', 'pointer');
 
         $scope.triggerOrdering = function () {
@@ -27,8 +27,8 @@ angular.module('nodeDemoAppApp')
             $scope.field = $scope.fieldName;
           }
           else {
-            if ($scope.direction == ASC) {
-              $scope.direction = "desc";
+            if ($scope.direction === ASC) {
+              $scope.direction = DESC;
             }
             else {
               $scope.direction = ASC;

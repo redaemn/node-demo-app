@@ -22,7 +22,7 @@ angular.module('nodeDemoAppApp')
     var defaultParams = {
       page: 1,
       count: 5,
-      orderBy: { field: 'id', direction: 'asc' }
+      orderBy: { '_id': 1 }
     };
 
     return {

@@ -10,14 +10,18 @@ angular.module('nodeDemoAppApp')
     $scope.counts = [5, 10, 20];
     
     $scope.page = 1;
-    $scope.orderByField = "surname";
-    $scope.orderByDirection = "asc";
+    $scope.orderByField = 'surname';
+    $scope.orderByDirection = 1;
 
     function updateContacts() {
+      var orderBy = {};
+
+      orderBy[$scope.orderByField] = $scope.orderByDirection;
+
       ContactsData.getAll({
         page: $scope.page,
         count: $scope.count,
-        orderBy: { field: $scope.orderByField, direction: $scope.orderByDirection }
+        orderBy: orderBy
       }).success(function(contactsData) {
         $scope.contacts = contactsData.data;
         $scope.totalContacts = contactsData.count;
