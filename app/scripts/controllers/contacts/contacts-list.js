@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('nodeDemoAppApp')
-  .controller('ContactsCtrl', function ($scope, ContactsData) {
+  .controller('ContactsListCtrl', function ($scope, ContactsData, $rootScope) {
     
     $scope.contacts = [];
     $scope.totalContacts = 0;
@@ -13,10 +13,12 @@ angular.module('nodeDemoAppApp')
     $scope.orderByField = 'surname';
     $scope.orderByDirection = 1;
 
-    function updateContacts() {
+    function updateContactList() {
       var orderBy = {};
 
       orderBy[$scope.orderByField] = $scope.orderByDirection;
+
+      $rootScope.$emit('contacts-list-updated');
 
       ContactsData.getAll({
         page: $scope.page,
@@ -28,9 +30,15 @@ angular.module('nodeDemoAppApp')
       });
     }
 
-    $scope.$watch('count', updateContacts);
-    $scope.$watch('page', updateContacts);
-    $scope.$watch('orderByField', updateContacts);
-    $scope.$watch('orderByDirection', updateContacts);
+    $scope.$watch('count', updateContactList);
+    $scope.$watch('page', updateContactList);
+    $scope.$watch('orderByField', updateContactList);
+    $scope.$watch('orderByDirection', updateContactList);
+
+    $scope.selectContact = function (contact) {
+      $rootScope.$emit('contacts-select', { contact : contact })
+    };
+
+    $rootScope.$on('contacts-updated', updateContactList);
 
   });

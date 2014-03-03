@@ -30,6 +30,9 @@ angular.module('nodeDemoAppApp')
         return $http.get('/api/contacts', {
           params: angular.extend({}, defaultParams, params)
         });
+      },
+      update: function (contact) {
+        return $http.post('/api/contacts', contact);
       }
     };
 

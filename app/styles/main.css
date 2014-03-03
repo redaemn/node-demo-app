@@ -80,3 +80,7 @@ body {
 
 /* Angular UI Bootstrap fix */
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.pagination > li > a { cursor: pointer; }
+
+.list-footer .pagination { margin: 0 10px 0 0; }
